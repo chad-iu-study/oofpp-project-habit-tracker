@@ -1,0 +1,30 @@
+# Create virtual environment
+venv:
+	python3 -m venv .venv
+
+# Activate virtual environment
+activate:
+	. .venv/bin/activate
+
+# Install requirements
+install:
+	activate && pip install -r requirements.txt
+
+# Run the application
+run:
+	activate && cd src/habit_tracker && python main.py
+
+# Run all unittests
+test:
+	activate && python -m unittest discover -s tests
+
+# Remove virtual environment and caches
+clean:
+	rm -rf .venv
+	rm -rf __pycache__
+	find . -type d -name "__pycache__" -exec rm -r {} +
+
+# Setup: create venv, install requirements, and run the app
+setup: venv install run
+
+csetup: clean venv install run
