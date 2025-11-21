@@ -8,15 +8,15 @@ activate:
 
 # Install requirements
 install:
-	activate && pip install -r requirements.txt
+	.venv/bin/pip install --upgrade pip setuptools wheel && .venv/bin/pip install -r requirements.txt
 
 # Run the application
 run:
-	activate && cd src/habit_tracker && python main.py
+	.venv/bin/python src/habit_tracker/main.py
 
 # Run all unittests
 test:
-	activate && python -m unittest discover -s tests
+	.venv/bin/python -m unittest discover -s tests
 
 # Remove virtual environment and caches
 clean:
@@ -25,6 +25,6 @@ clean:
 	find . -type d -name "__pycache__" -exec rm -r {} +
 
 # Setup: create venv, install requirements, and run the app
-setup: venv install run
+setup: venv activate run
 
 csetup: clean venv install run
