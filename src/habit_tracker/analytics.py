@@ -18,6 +18,10 @@ def get_habits_by_period(habits, period):
     return [habit for habit in habits if habit.period == period]
 
 def get_weekly_domain_counts(habits, reference_time):
+    """
+    - Count habit completions per domain for the week leading up to reference_time.
+    - Return a dictionary with domain counts.
+    """
     week_start = reference_time - timedelta(days=7)
     counts = Counter()
     for habit in habits:
@@ -27,6 +31,10 @@ def get_weekly_domain_counts(habits, reference_time):
     return dict(counts)
 
 def get_weekly_persona(habits, reference_time):
+    """
+    - Determine the dominant domain for the week based on habit completions.
+    - Return a string describing the weekly persona.
+    """
     counts = get_weekly_domain_counts(habits, reference_time)
     if not counts:
         return "No dominant Domain this week."
