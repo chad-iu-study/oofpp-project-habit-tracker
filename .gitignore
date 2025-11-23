@@ -422,3 +422,4 @@ FodyWeavers.xsd
 
 # VS Code workspace storage
 .vscode/
+*.code-workspace
