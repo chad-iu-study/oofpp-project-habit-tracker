@@ -1,6 +1,6 @@
 import json
 import os
-from habit import Habit
+from src.habit_tracker.habit import Habit
 from datetime import datetime
 
 

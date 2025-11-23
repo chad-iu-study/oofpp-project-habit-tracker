@@ -4,6 +4,8 @@ from datetime import datetime, timezone
 from habit_manager import HabitManager
 from analytics import (
     get_habits_by_period,
+    get_weekly_habit_summary,
+    get_monthly_habit_summary,
     get_weekly_persona,
 )
 
@@ -111,7 +113,9 @@ def show_menu():
     print("3) Delete habit")
     print("4) Mark habit as completed")
     print("5) View analytics & weekly persona")
-    print("6) Exit")
+    print("6) View weekly habit summary")
+    print("7) View monthly habit summary")
+    print("8) Exit")
 
 
 def check_index(input_str, mgr):
@@ -159,6 +163,22 @@ def main():
             view_analytics(mgr)
             input("Press Enter to continue...")
         elif choice == "6":
+            os.system("clear")
+            habits = mgr.get_all_habits()
+            summary = get_weekly_habit_summary(habits, now_utc())
+            print("Weekly Habit Summary:")
+            for habit_name, count in summary.items():
+                print(f"  {habit_name}: {count} completions")
+            input("Press Enter to continue...")
+        elif choice == "7":
+            os.system("clear")
+            habits = mgr.get_all_habits()
+            summary = get_monthly_habit_summary(habits, now_utc())
+            print("Monthly Habit Summary:")
+            for habit_name, count in summary.items():
+                print(f"  {habit_name}: {count} completions")
+            input("Press Enter to continue...")
+        elif choice == "8":
             print("Bye.")
             sys.exit(0)
         else:
