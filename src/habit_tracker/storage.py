@@ -8,16 +8,16 @@ BASE_DIR = os.path.dirname(__file__)
 DEFAULT_PATH = os.path.join(BASE_DIR, "..", "..", "habits.json")
 
 
-def load_habits():
+def load_habits(path=DEFAULT_PATH):
     """
     - Load habits from the default JSON file.
     - Returns list[Habit]: list of Habit instances.
     """
-    if not os.path.exists(DEFAULT_PATH):
+    if not os.path.exists(path):
         return []
     
     try:
-        with open(DEFAULT_PATH, "r") as file:
+        with open(path, "r") as file:
             data = json.load(file)
     except json.JSONDecodeError:
         print("Error decoding JSON from habits file.")
@@ -32,13 +32,13 @@ def load_habits():
     return [habit_from_dict(item) for item in data]
 
 
-def save_habits(habits):
+def save_habits(habits, path=DEFAULT_PATH):
     """
     - Save list of Habits to JSON file.
     - habits: list of Habit instances to save.
     """
     data = [habit_to_dict(habit) for habit in habits]
-    with open(DEFAULT_PATH, "w") as f:
+    with open(path, "w") as f:
         json.dump(data, f, indent=2)
 
 
