@@ -37,17 +37,20 @@ habit-tracker/
 
 ## Installation
 ```bash
-git clone <repo-url>
-cd src/habit-tracker
-python -m venv .venv
+1. git clone <repo-url>
 
+2. cd src/habit-tracker
+
+3. python -m venv .venv
+
+4. # Start virtual env
 # macOS / Linux
 source .venv/bin/activate
 
 # Windows (PowerShell)
 # .venv\Scripts\activate
 
-pip install -r requirements.txt
+5. pip install -r requirements.txt
 
 ## RUN Project
 python main.py

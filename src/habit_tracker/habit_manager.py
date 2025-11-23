@@ -1,5 +1,5 @@
-from habit import Habit
-from storage import load_habits, save_habits
+from src.habit_tracker.habit import Habit
+from src.habit_tracker.storage import load_habits, save_habits
 
 
 class HabitManager:

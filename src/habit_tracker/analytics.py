@@ -49,3 +49,29 @@ def get_weekly_persona(habits, reference_time):
         top_domain = ""
     persona = WEEKLY_PERSONA.get(top_domain, f"The {top_domain.capitalize()}")
     return f"Your dominant Domain this week is:\n {top_domain.capitalize()}\n – Weekly Persona: '{persona}'\n Count: {top_count}."
+
+def get_monthly_habit_summary(habits, reference_time):
+    """
+    - Habit completions for the month.
+    - Return a dictionary with habit names and their completion counts.
+    """
+    month_start = reference_time - timedelta(days=30)
+    summary = {}
+    for habit in habits:
+        for completion in habit.completions:
+            if completion >= month_start and completion <= reference_time:
+                summary[habit.name] = summary.get(habit.name, 0) + 1
+    return summary
+
+def get_weekly_habit_summary(habits, reference_time):
+    """
+    - Habit completions for the week.
+    - Return a dictionary with habit names and their completion counts.
+    """
+    week_start = reference_time - timedelta(days=7)
+    summary = {}
+    for habit in habits:
+        for completion in habit.completions:
+            if completion >= week_start and completion <= reference_time:
+                summary[habit.name] = summary.get(habit.name, 0) + 1
+    return summary
